@@ -189,9 +189,9 @@ right = 30 - left
 print('\r[', '#' * left, ' ' * right, ']', f' {percent:.0f}%', sep='', end='', flush=True)
 print("\n\nSucessfully Converted " + Name + ".obj model in " + str(int((time.process_time() - StartedTime) * 10) / 10) + " seconds")
 try:
-    OutputJSON = open((currentDir+"\.bot.Output\Output.schematic.json"),"w")
+    OutputJSON = open((currentDir+"\Output\Output.schematic.json"),"w")
 except:
-    print(Name + "\.bot.Output\Output.schematic.json not found or not writable, please read the instructions")
+    print(Name + "\Output\Output.schematic.json not found or not writable, please read the instructions")
     pause = input("Press Enter to continue ")
     sys.exit(1)
 for printingLine in FinalCode:
@@ -203,7 +203,7 @@ try:
 except:
     print("\nFirst time converting " + Name + ", creating new bot...")
 time.sleep(0.5)
-shutil.copytree ((currentDir+"\.bot.Output\\"), os.path.expandvars(r'%LOCALAPPDATA%\RoboBuild\Saved\bots\.bot.Output/'))
+shutil.copytree ((currentDir+"\Output\\"), os.path.expandvars(r'%LOCALAPPDATA%\RoboBuild\Saved\bots\.bot.Output/'))
 time.sleep(0.5)
 print("\nSucessfully Created a new bot")
 pause = input("\nPress Enter to continue ")

@@ -1,0 +1,258 @@
+[1, 1, 4]
+{
+	"palette": "olive",
+	"customPalette": { },
+	"kits": { },
+	"properties": {
+		"values": {
+			"grid_size": { "tag": "EProperty_Float", "float": 5 } } },
+	"autoWelds": [],
+	"boundingBox": {
+		"min": { "x": -16.4375, "y": -16.5, "z": -6.5 },
+		"max": { "x": 16.4375, "y": 16.5, "z": 26.5 },
+		"isValid": 1
+	},
+	"kitDisplayName": "",
+	"kitDisplayDescription": "",
+	"kitIconName": "",
+	"parts": {
+		"base_frame_0001": {
+			"parent": "None",
+			"attachment": {
+				"mirrored": false,
+				"myPoint": {
+					"frameElement": {
+						"typeId": "FE_Plate",
+						"frameIndex": 1,
+						"elemId": 1,
+						"refl": false
+					},
+					"frameParameter": { "x": 0.5, "y": 0.5, "z": 1 }
+				},
+				"parentPoint": { }
+			},
+			"type": "PT_Frame",
+			"key": { "frameIndex": 1 },
+			"reflection": "None"
+		} 
+	},
+	"frames": {
+		"1": {
+			"points": {
+				"1": { "x": -5.0, "y": -5.0, "z": 5.0 },
+				"2": { "x": -5.0, "y": -5.0, "z": -5.0 },
+				"3": { "x": -5.0, "y": 5.0, "z": -5.0 },
+				"4": { "x": -5.0, "y": 5.0, "z": 5.0 },
+				"5": { "x": 5.0, "y": -5.0, "z": 5.0 },
+				"6": { "x": 5.0, "y": -5.0, "z": -5.0 },
+				"7": { "x": 5.0, "y": 5.0, "z": -5.0 },
+				"8": { "x": 5.0, "y": 5.0, "z": 5.0 }
+			},
+			"frameSegments": {
+				"1": {
+					"first": { "elemId": 3 },
+					"second": { "elemId": 4 },
+					"visible": false,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 2 },
+							"material": { "tag": "EProperty_Int", "integer": 1 }
+						} }
+				},
+				"2": {
+					"first": { "elemId": 2 },
+					"second": { "elemId": 3 },
+					"visible": false,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 2 },
+							"material": { "tag": "EProperty_Int", "integer": 1 }
+						} }
+				},
+				"3": {
+					"first": { "elemId": 1 },
+					"second": { "elemId": 2 },
+					"visible": false,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 2 },
+							"material": { "tag": "EProperty_Int", "integer": 1 }
+						} }
+				},
+				"4": {
+					"first": { "elemId": 1 },
+					"second": { "elemId": 4 },
+					"visible": false,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 2 },
+							"material": { "tag": "EProperty_Int", "integer": 1 }
+						} }
+				},
+				"5": {
+					"first": { "elemId": 6 },
+					"second": { "elemId": 2 },
+					"visible": false,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 2 },
+							"material": { "tag": "EProperty_Int", "integer": 1 }
+						} }
+				},
+				"6": {
+					"first": { "elemId": 5 },
+					"second": { "elemId": 6 },
+					"visible": false,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 2 },
+							"material": { "tag": "EProperty_Int", "integer": 1 }
+						} }
+				},
+				"7": {
+					"first": { "elemId": 1 },
+					"second": { "elemId": 5 },
+					"visible": false,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 2 },
+							"material": { "tag": "EProperty_Int", "integer": 1 }
+						} }
+				},
+				"8": {
+					"first": { "elemId": 7 },
+					"second": { "elemId": 3 },
+					"visible": false,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 2 },
+							"material": { "tag": "EProperty_Int", "integer": 1 }
+						} }
+				},
+				"9": {
+					"first": { "elemId": 6 },
+					"second": { "elemId": 7 },
+					"visible": false,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 2 },
+							"material": { "tag": "EProperty_Int", "integer": 1 }
+						} }
+				},
+				"10": {
+					"first": { "elemId": 7 },
+					"second": { "elemId": 8 },
+					"visible": false,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 2 },
+							"material": { "tag": "EProperty_Int", "integer": 1 }
+						} }
+				},
+				"11": {
+					"first": { "elemId": 4 },
+					"second": { "elemId": 8 },
+					"visible": false,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 2 },
+							"material": { "tag": "EProperty_Int", "integer": 1 }
+						} }
+				}
+			},
+			"framePlates": {
+				"1": {
+					"points": [
+						{ "elemId": 4 },
+						{ "elemId": 3 },
+						{ "elemId": 2 },
+						{ "elemId": 1 }
+					],
+					"visible": true,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 0 },
+							"material": { "tag": "EProperty_Int", "integer": 0 }
+						} }
+				},
+				"2": {
+					"points": [
+						{ "elemId": 2 },
+						{ "elemId": 6 },
+						{ "elemId": 5 },
+						{ "elemId": 1 }
+					],
+					"visible": true,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 0 },
+							"material": { "tag": "EProperty_Int", "integer": 0 }
+						} }
+				},
+				"3": {
+					"points": [
+						{ "elemId": 3 },
+						{ "elemId": 7 },
+						{ "elemId": 6 },
+						{ "elemId": 2 }
+					],
+					"visible": true,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 0 },
+							"material": { "tag": "EProperty_Int", "integer": 0 }
+						} }
+				},
+				"4": {
+					"points": [
+						{ "elemId": 8 },
+						{ "elemId": 7 },
+						{ "elemId": 3 },
+						{ "elemId": 4 }
+					],
+					"visible": true,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 0 },
+							"material": { "tag": "EProperty_Int", "integer": 0 }
+						} }
+				},
+				"5": {
+					"points": [
+						{ "elemId": 5 },
+						{ "elemId": 8 },
+						{ "elemId": 4 },
+						{ "elemId": 1 }
+					],
+					"visible": true,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 0 },
+							"material": { "tag": "EProperty_Int", "integer": 0 }
+						} }
+				},
+				"6": {
+					"points": [
+						{ "elemId": 6 },
+						{ "elemId": 7 },
+						{ "elemId": 8 },
+						{ "elemId": 5 }
+					],
+					"visible": true,
+					"properties": {
+						"values": {
+							"tint": { "tag": "EProperty_Tint", "integer": 0 },
+							"material": { "tag": "EProperty_Int", "integer": 0 }
+						} }
+				}
+			},
+			"mirror": "MirrorY",
+			"locked": false,
+			"frameMaterials": [
+				"plastic",
+				"aluminium"
+			]
+		} },
+	"wires": [],
+	"processors": { }
+}

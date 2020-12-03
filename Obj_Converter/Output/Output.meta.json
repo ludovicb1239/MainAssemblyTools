@@ -1,0 +1,68 @@
+[1, 0, 0]
+{
+	"properties": {
+		"Dimension": {
+			"sortKey": 5,
+			"displayName": "Dimensions",
+			"unit": "m",
+			"property": {
+				"tag": "EProperty_Vector",
+				"integer": 0,
+				"float": 0,
+				"vector": {
+					"x": 0.32874998450279236,
+					"y": 0.32999998331069946,
+					"z": 0.32999998331069946,
+					"w": 1
+				},
+				"string": ""
+			}
+		},
+		"Mass": {
+			"sortKey": 0,
+			"displayName": "Mass",
+			"unit": "kg",
+			"property": {
+				"tag": "EProperty_Float",
+				"integer": 0,
+				"float": 2.9856436252593994,
+				"vector": {
+					"x": 0,
+					"y": 0,
+					"z": 0,
+					"w": 1
+				},
+				"string": ""
+			}
+		},
+		"Parts": {
+			"sortKey": 20,
+			"displayName": "Parts",
+			"unit": "",
+			"property": {
+				"tag": "EProperty_Int",
+				"integer": 1,
+				"float": 0,
+				"vector": {
+					"x": 0,
+					"y": 0,
+					"z": 0,
+					"w": 1
+				},
+				"string": ""
+			}
+		}
+	},
+	"steamUGCId": "",
+	"cameraTransform": {
+		"rotation": {
+			"x": -0.22809670865535736,
+			"y": 0.061406470835208893,
+			"z": 0.93829327821731567,
+			"w": 0.2526002824306488
+		},
+		"translation": { "x": 58.072265625, "y": -34.154922485351563, "z": 43.000762939453125 },
+		"scale3D": { "x": 1, "y": 1, "z": 1 }
+	},
+	"versionNumber": { "major": 1, "minor": 1, "bugFix": 4 }
+}
