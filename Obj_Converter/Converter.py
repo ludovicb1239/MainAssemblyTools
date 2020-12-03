@@ -1,5 +1,5 @@
 """
-@author: Ludovic
+@author: ludovicb1239
 """
 
 import os
@@ -57,7 +57,7 @@ while (line < len(ImportedInfo)):
     if (ImportedInfo[line].startswith("v ")):
         Pos = ((ImportedInfo[line])[2:-1]).split()
         if (CreationForward == "X"):
-            xPos = Pos[0] 
+            xPos = Pos[0]
             yPos = Pos[1 + InvertZY]
             zPos = Pos[2 - InvertZY]
         elif (CreationForward == "Y"):
@@ -115,23 +115,24 @@ while (line < len(ImportedInfo)):
                 if (lookingLine == '\t\t\t"locked": false,'):
                     break;
                 writingLine += 1
-            FinalCode.insert(writingLine - 2, "\t\t\t\t}" + ("," * period))
-            FinalCode.insert(writingLine - 2, "\t\t\t\t\t\t" + '} }')        
-            FinalCode.insert(writingLine - 2, "\t\t\t\t\t\t\t" + '"material": { "tag": "EProperty_Int", "integer": 0 }')
-            FinalCode.insert(writingLine - 2, "\t\t\t\t\t\t\t" + '"tint": { "tag": "EProperty_Tint", "integer": 0 },')
-            FinalCode.insert(writingLine - 2, "\t\t\t\t\t\t" + '"values": {')
-            FinalCode.insert(writingLine - 2, "\t\t\t\t\t" + '"properties": {')
-            FinalCode.insert(writingLine - 2, "\t\t\t\t\t" + '"visible": true,')
-            FinalCode.insert(writingLine - 2, "\t\t\t\t\t" + '],')
+            nowWritingLine = writingLine - 2
+            FinalCode.insert(nowWritingLine, "\t\t\t\t}" + ("," * period))
+            FinalCode.insert(nowWritingLine, "\t\t\t\t\t\t" + '} }')
+            FinalCode.insert(nowWritingLine, "\t\t\t\t\t\t\t" + '"material": { "tag": "EProperty_Int", "integer": 0 }')
+            FinalCode.insert(nowWritingLine, "\t\t\t\t\t\t\t" + '"tint": { "tag": "EProperty_Tint", "integer": 0 },')
+            FinalCode.insert(nowWritingLine, "\t\t\t\t\t\t" + '"values": {')
+            FinalCode.insert(nowWritingLine, "\t\t\t\t\t" + '"properties": {')
+            FinalCode.insert(nowWritingLine, "\t\t\t\t\t" + '"visible": true,')
+            FinalCode.insert(nowWritingLine, "\t\t\t\t\t" + '],')
             i = len(Points) - 1
             while (i > -1):
                 if (len(Points) - 1 == i):
-                    FinalCode.insert(writingLine - 2, '\t\t\t\t\t\t{ "elemId": ' + Points[i] + " }")
+                    FinalCode.insert(nowWritingLine, '\t\t\t\t\t\t{ "elemId": ' + Points[i] + " }")
                 else:
-                    FinalCode.insert(writingLine - 2, '\t\t\t\t\t\t{ "elemId": ' + Points[i] + " },")
+                    FinalCode.insert(nowWritingLine, '\t\t\t\t\t\t{ "elemId": ' + Points[i] + " },")
                 i -= 1
-            FinalCode.insert(writingLine - 2, "\t\t\t\t\t" + '"points": [')
-            FinalCode.insert(writingLine - 2, "\t\t\t\t" + '"' + str(faceNum) + '"' + ": {")
+            FinalCode.insert(nowWritingLine, "\t\t\t\t\t" + '"points": [')
+            FinalCode.insert(nowWritingLine, "\t\t\t\t" + '"' + str(faceNum) + '"' + ": {")
         faceNum += 1
         i = 0
         while (i < len(Points) - 1):
@@ -171,17 +172,18 @@ while (segmentNum < segmentCount):
             if (lookingLine == '\t\t\t"framePlates": {'):
                 break;
             writingLine += 1
-        FinalCode.insert(writingLine - 1, "\t\t\t\t}" + ("," * period))
-        FinalCode.insert(writingLine - 1, "\t\t\t\t\t\t" + '} }')        
-        FinalCode.insert(writingLine - 1, "\t\t\t\t\t\t\t" + '"material": { "tag": "EProperty_Int", "integer": 1 }')
-        FinalCode.insert(writingLine - 1, "\t\t\t\t\t\t\t" + '"tint": { "tag": "EProperty_Tint", "integer": 2 },')
-        FinalCode.insert(writingLine - 1, "\t\t\t\t\t\t" + '"values": {')
-        FinalCode.insert(writingLine - 1, "\t\t\t\t\t" + '"properties": {')
-        FinalCode.insert(writingLine - 1, "\t\t\t\t\t" + '"visible": ' + ShowFrameSegments + ",")
+        nowWritingLine = writingLine - 1
+        FinalCode.insert(nowWritingLine, "\t\t\t\t}" + ("," * period))
+        FinalCode.insert(nowWritingLine, "\t\t\t\t\t\t" + '} }')
+        FinalCode.insert(nowWritingLine, "\t\t\t\t\t\t\t" + '"material": { "tag": "EProperty_Int", "integer": 1 }')
+        FinalCode.insert(nowWritingLine, "\t\t\t\t\t\t\t" + '"tint": { "tag": "EProperty_Tint", "integer": 2 },')
+        FinalCode.insert(nowWritingLine, "\t\t\t\t\t\t" + '"values": {')
+        FinalCode.insert(nowWritingLine, "\t\t\t\t\t" + '"properties": {')
+        FinalCode.insert(nowWritingLine, "\t\t\t\t\t" + '"visible": ' + ShowFrameSegments + ",")
         #FinalCode.insert(writingLine - 1, "\t\t\t\t\t" + '"curveControl": { "x": 0, "y": 0, "z": 0 },"')
-        FinalCode.insert(writingLine - 1, "\t\t\t\t\t" + '"second": { "elemId": ' + second + ' },')
-        FinalCode.insert(writingLine - 1, "\t\t\t\t\t" + '"first": { "elemId": ' + first + ' },')
-        FinalCode.insert(writingLine - 1, "\t\t\t\t" + '"' + str(segmentNum) + '": {')
+        FinalCode.insert(nowWritingLine, "\t\t\t\t\t" + '"second": { "elemId": ' + second + ' },')
+        FinalCode.insert(nowWritingLine, "\t\t\t\t\t" + '"first": { "elemId": ' + first + ' },')
+        FinalCode.insert(nowWritingLine, "\t\t\t\t" + '"' + str(segmentNum) + '": {')
     segmentNum += 1
 percent = 100
 left = 30 * percent // 100
