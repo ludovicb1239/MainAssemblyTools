@@ -1,0 +1,7 @@
+First, make sure you have python 3 or more installed
+Here is the installer
+https://www.python.org/ftp/python/3.8.2/python-3.8.2.exe
+Then, move your 3d model into this folder.
+Make sure that the file attribute is .obj and is name does not have spaces
+Then, run Converter.py with admin rights and follow the instructions
+Enjoy !
