@@ -1,0 +1,56 @@
+[1, 1, 4]
+{
+	"palette": "olive",
+	"customPalette": { },
+	"kits": { },
+	"properties": {
+		"values": {
+			"grid_size": { "tag": "EProperty_Float", "float": 5 } } },
+	"autoWelds": [],
+	"boundingBox": {
+		"min": { "x": -16.4375, "y": -16.5, "z": -6.5 },
+		"max": { "x": 16.4375, "y": 16.5, "z": 26.5 },
+		"isValid": 1
+	},
+	"kitDisplayName": "",
+	"kitDisplayDescription": "",
+	"kitIconName": "",
+	"parts": {
+		"base_frame_0001": {
+			"parent": "None",
+			"attachment": {
+				"mirrored": false,
+				"myPoint": {
+					"frameElement": {
+						"typeId": "FE_Plate",
+						"frameIndex": 1,
+						"elemId": 1,
+						"refl": false
+					},
+					"frameParameter": { "x": 0.5, "y": 0.5, "z": 1 }
+				},
+				"parentPoint": { }
+			},
+			"type": "PT_Frame",
+			"key": { "frameIndex": 1 },
+			"reflection": "None"
+		} 
+	},
+	"frames": {
+		"1": {
+			"points": {
+			},
+			"frameSegments": {
+			},
+			"framePlates": {
+			},
+			"mirror": "MirrorNone",
+			"locked": false,
+			"frameMaterials": [
+				"plastic",
+				"aluminium"
+			]
+		} },
+	"wires": [],
+	"processors": { }
+}

@@ -1,0 +1,4 @@
+Move your 3d model into this folder.
+Make sure that the file attribute is .obj and is name does not have spaces
+Then, run Converter.exe with admin rights and follow the instructions
+Enjoy !
