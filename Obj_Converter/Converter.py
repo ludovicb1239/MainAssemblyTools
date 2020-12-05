@@ -1,7 +1,8 @@
 """
 @author: ludovicb1239
 """
-
+#For free form curve use
+#curv point x y z
 import os
 import shutil
 import time
@@ -40,7 +41,11 @@ for code in FinalCode:
     FinalCode[i] = code[:-1]
     i+=1
 print("\nSucessfully imported 3d model")
-FinalCode[46] = '\t\t\t"mirror": "MirrorY",'
+FinalCode[46] = '\t\t\t"mirror": "MirrorY",'        
+vertexCount = 0
+for i in ImportedInfo:
+    if (i.startswith("v ")):
+        vertexCount += 1
 pointNum = 1
 faceNum = 1
 PrintedError1 = False
@@ -52,7 +57,10 @@ print("\nStarting converting model\n")
 StartedTime = time.process_time()
 timeStart = time.process_time()
 NotMirroredPoints = []
+NotMirroredCurvs = []#(first, second)
 segments = [] #(first, second)    x, y, z
+curves = [] #firstPoint secondPoint x y z
+vertexes = [] #(x, y, z)
 while (line < len(ImportedInfo)):
     if (ImportedInfo[line].startswith("v ")):
         Pos = ((ImportedInfo[line])[2:-1]).split()
@@ -81,10 +89,6 @@ while (line < len(ImportedInfo)):
             if (not yPos == "0"):
                 yPos = str(float(yPos) * ScaleY)
             zPos = str(float(zPos) * ScaleZ)
-        vertexCount = 0
-        for i in ImportedInfo:
-            if (i.startswith("v ")):
-                vertexCount += 1
         period = vertexCount > pointNum
         writingLine = 0
         for lookingLine in FinalCode:
@@ -93,6 +97,7 @@ while (line < len(ImportedInfo)):
             writingLine += 1
         FinalCode.insert(writingLine - 1, "\t\t\t\t" + '"' + str(pointNum) + '"' + """: { "x": """ + xPos + """, "y": """ + yPos + """, "z": """ + zPos + " }" + ("," * period))
         pointNum += 1
+        vertexes.append((xPos, yPos, zPos))
     elif (ImportedInfo[line].startswith("f")):
         Points = ((ImportedInfo[line])[2:-1]).split()
         i = 0
@@ -150,6 +155,58 @@ while (line < len(ImportedInfo)):
         PrintedError1 = True
     elif ImportedInfo[line].startswith("o "):
         Parts += 1
+    elif (ImportedInfo[line].startswith("curv ")): #first second x1 y1 z1 x2 y2 z2
+        curveInfo = ((ImportedInfo[line])[5:-1]).split()
+        firstPoint = curveInfo[0]
+        secondPoint = curveInfo[1]
+        firstControl = [0,0,0]
+        secondControl = [0,0,0]
+        if (CreationForward == "X"):
+            firstControl[0] = curveInfo[2]
+            firstControl[1] = curveInfo[3 + InvertZY]
+            firstControl[2] = curveInfo[4 - InvertZY]
+            secondControl[0] = curveInfo[5]
+            secondControl[1] = curveInfo[6 + InvertZY]
+            secondControl[2] = curveInfo[7 - InvertZY]
+        elif (CreationForward == "Y"):
+            firstControl[0] = curveInfo[3]
+            firstControl[1] = curveInfo[2 + (InvertZY * 2)]
+            firstControl[2] = curveInfo[4 - (InvertZY * 2)]
+            secondControl[0] = curveInfo[6]
+            secondControl[1] = curveInfo[5 + (InvertZY * 2)]
+            secondControl[2] = curveInfo[7 - (InvertZY * 2)]
+        elif (CreationForward == "Z"):
+            firstControl[0] = curveInfo[4]
+            firstControl[1] = curveInfo[3 - InvertZY]
+            firstControl[2] = curveInfo[2 + InvertZY]
+            secondControl[0] = curveInfo[7]
+            secondControl[1] = curveInfo[6 - InvertZY]
+            secondControl[2] = curveInfo[5 + InvertZY]
+        if (Mirror and float(firstControl[1]) < 0):
+            NotMirroredCurvs.append((firstPoint, secondPoint))
+            firstControl[1] = "0"
+        if (Mirror and float(secondControl[1]) < 0):
+            NotMirroredCurvs.append((firstPoint, secondPoint))
+            secondControl[1] = "0"
+        if (RoundVertexPos == 1):
+            firstControl[0] = str(int(float(firstControl[0]) * ScaleX * 0.8) / 0.8)
+            if (not firstControl[1] == "0"):
+                firstControl[1] = str(int(float(firstControl[1]) * ScaleY * 0.8) / 0.8)
+            firstControl[2] = str(int(float(firstControl[2]) * ScaleZ * 0.8) / 0.8)
+            secondControl[0] = str(int(float(secondControl[0]) * ScaleX * 0.8) / 0.8)
+            if (not secondControl[1] == "0"):
+                secondControl[1] = str(int(float(secondControl[1]) * ScaleY * 0.8) / 0.8)
+            secondControl[2] = str(int(float(secondControl[2]) * ScaleZ * 0.8) / 0.8)
+        else:
+            firstControl[0] = str(float(firstControl[0]) * ScaleX)
+            if (not firstControl[1] == "0"):
+                firstControl[1] = str(float(firstControl[1]) * ScaleY)
+            firstControl[2] = str(float(firstControl[2]) * ScaleZ)
+            secondControl[0] = str(float(secondControl[0]) * ScaleX)
+            if (not secondControl[1] == "0"):
+                secondControl[1] = str(float(secondControl[1]) * ScaleY)
+            secondControl[2] = str(float(secondControl[2]) * ScaleZ)
+        curves.append([firstPoint, secondPoint, firstControl[0], firstControl[1], firstControl[2], secondControl[0], secondControl[1], secondControl[2]])
     if ImportedInfo[line].startswith("o ") and not PrintedError2 and Parts == 2:
         print("\nYour model contains multiple parts, you might want to use another one")
         PrintedError2 = True
@@ -180,7 +237,33 @@ while (segmentNum < segmentCount):
         FinalCode.insert(nowWritingLine, "\t\t\t\t\t\t" + '"values": {')
         FinalCode.insert(nowWritingLine, "\t\t\t\t\t" + '"properties": {')
         FinalCode.insert(nowWritingLine, "\t\t\t\t\t" + '"visible": ' + ShowFrameSegments + ",")
-        #FinalCode.insert(writingLine - 1, "\t\t\t\t\t" + '"curveControl": { "x": 0, "y": 0, "z": 0 },"')
+        for curve in curves:
+            if curve[0] == first and curve[1] == second:
+                z0 = vertexes[int(first)-1]
+                z1 = vertexes[int(second)-1]
+                c0 = (curve[2], curve[3], curve[4])
+                c1 = (curve[5], curve[6], curve[7])
+                m0 = ((float(z0[0])+float(c0[0]))/2, (float(z0[1])+float(c0[1]))/2, (float(z0[2])+float(c0[2]))/2)
+                m2 = ((float(z1[0])+float(c1[0]))/2, (float(z1[1])+float(c1[1]))/2, (float(z1[2])+float(c1[2]))/2)
+                m1 = ((float(c0[0])+float(c1[0]))/2, (float(c0[1])+float(c1[1]))/2, (float(c0[2])+float(c1[2]))/2)
+                m3 = ((float(m0[0])+float(m1[0]))/2, (float(m0[1])+float(m1[1]))/2, (float(m0[2])+float(m1[2]))/2)
+                m4 = ((float(m2[0])+float(m1[0]))/2, (float(m2[1])+float(m1[1]))/2, (float(m2[2])+float(m1[2]))/2)
+                m5 = ((float(m3[0])+float(m4[0]))/2, (float(m3[1])+float(m4[1]))/2, (float(m3[2])+float(m4[2]))/2)
+                curveControl = (str(m5[0]), str(m5[1]), str(m5[2]))
+                FinalCode.insert(nowWritingLine, "\t\t\t\t\t" + '"curveControl": { "x": ' + curveControl[0] + ', "y": ' + curveControl[1] + ', "z": ' + curveControl[2] + ' },"')
+            if curve[1] == first and curve[0] == second:
+                z0 = vertexes[int(first)-1]
+                z1 = vertexes[int(second)-1]
+                c1 = (curve[2], curve[3], curve[4])
+                c0 = (curve[5], curve[6], curve[7])
+                m0 = ((float(z0[0])+float(c0[0]))/2, (float(z0[1])+float(c0[1]))/2, (float(z0[2])+float(c0[2]))/2)
+                m2 = ((float(z1[0])+float(c1[0]))/2, (float(z1[1])+float(c1[1]))/2, (float(z1[2])+float(c1[2]))/2)
+                m1 = ((float(c0[0])+float(c1[0]))/2, (float(c0[1])+float(c1[1]))/2, (float(c0[2])+float(c1[2]))/2)
+                m3 = ((float(m0[0])+float(m1[0]))/2, (float(m0[1])+float(m1[1]))/2, (float(m0[2])+float(m1[2]))/2)
+                m4 = ((float(m2[0])+float(m1[0]))/2, (float(m2[1])+float(m1[1]))/2, (float(m2[2])+float(m1[2]))/2)
+                m5 = ((float(m3[0])+float(m4[0]))/2, (float(m3[1])+float(m4[1]))/2, (float(m3[2])+float(m4[2]))/2)
+                curveControl = (str(m5[0]), str(m5[1]), str(m5[2]))
+                FinalCode.insert(nowWritingLine, "\t\t\t\t\t" + '"curveControl": { "x": ' + curveControl[0] + ', "y": ' + curveControl[1] + ', "z": ' + curveControl[2] + ' },"')
         FinalCode.insert(nowWritingLine, "\t\t\t\t\t" + '"second": { "elemId": ' + second + ' },')
         FinalCode.insert(nowWritingLine, "\t\t\t\t\t" + '"first": { "elemId": ' + first + ' },')
         FinalCode.insert(nowWritingLine, "\t\t\t\t" + '"' + str(segmentNum) + '": {')
