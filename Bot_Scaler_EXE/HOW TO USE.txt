@@ -1,0 +1,4 @@
+Run Scaler.exe with admin rights and follow the instructions
+Make sure the given name doesnt have special characters in it
+This will overwrite the existing creation
+Enjoy !
