@@ -65,7 +65,10 @@ curves = [] #firstPoint secondPoint x y z
 vertexes = [] #(x, y, z)
 while (line < len(ImportedInfo)):
     if (ImportedInfo[line].startswith("v ")):
-        Pos = ((ImportedInfo[line])[2:-1]).split()
+        Pos = ((ImportedInfo[line])[2:-1]).split()            
+        xPos = 0
+        yPos = 0
+        zPos = 0
         if (CreationForward == "X"):
             xPos = Pos[0]
             yPos = Pos[1 + InvertZY]
