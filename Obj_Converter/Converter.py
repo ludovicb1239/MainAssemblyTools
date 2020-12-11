@@ -21,10 +21,12 @@ ScaleX = float(input("Creation's X scale : "))
 ScaleY = float(input("Creation's Y scale : "))
 ScaleZ = float(input("Creation's Z scale : "))
 CreationForward = input("Your creation's forward (X or Y or Z) ")
+CreationForward.capitalize()
 InvertZY = int(input("Invert Z axis over Y (1 or 0) "))
 RoundVertexPos = int(input("Round Vertex Position to 1.25cm (Grid) (1 or 0) "))
 Mirror = int(input("Mirror Creation on Y Axis (1 or 0) "))
 ShowFrameSegments = input("Show frame segments (true or false) ")
+ShowFrameSegments.lower()
 try:
     BaseJSON = open((currentDir+"\BaseCode.json"),"r")
 except:
